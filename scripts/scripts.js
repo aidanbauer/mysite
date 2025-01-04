@@ -11,6 +11,8 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
+  toClassName,
 } from './aem.js';
 
 /**
@@ -108,6 +110,14 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+  
+  const context = {
+    getMetadata,
+    toClassName,
+  };
+  // eslint-disable-next-line import/no-relative-packages
+  const { initConversionTracking } = await import('../plugins/rum-conversion/src/index.js');
+  await initConversionTracking.call(context, document);
 }
 
 /**
