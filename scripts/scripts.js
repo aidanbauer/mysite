@@ -15,18 +15,8 @@ import {
   toClassName,
   loadScript,
   toCamelCase,
-  sampleRUM
-} from './aem.js';
-
-const pluginContext = {
-  getAllMetadata,
-  getMetadata,
-  loadCSS,
-  loadScript,
   sampleRUM,
-  toCamelCase,
-  toClassName,
-};
+} from './aem.js';
 
 const AUDIENCES = {
   mobile: () => window.innerWidth < 600,
@@ -49,6 +39,16 @@ export function getAllMetadata(scope) {
       return res;
     }, {});
 }
+
+const pluginContext = {
+  getAllMetadata,
+  getMetadata,
+  loadCSS,
+  loadScript,
+  sampleRUM,
+  toCamelCase,
+  toClassName,
+};
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -152,7 +152,7 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
-  
+
   const context = {
     getMetadata,
     toClassName,
